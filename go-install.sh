@@ -49,19 +49,7 @@ ipIsConnect(){
 
 setupEnv(){
     if [[ -z `echo $GOPATH` ]];then
-        while :
-        do
-            read -p "默认GOPATH路径: `colorEcho $BLUE /home/go`, 回车直接使用或者输入自定义绝对路径: " GOPATH
-            if [[ $GOPATH ]];then
-                if [[ ${GOPATH:0:1} != "/" ]];then
-                    colorEcho $YELLOW "请输入绝对路径!"
-                    continue
-                fi
-            else
-                GOPATH="/home/go"
-            fi
-            break
-        done
+        GOPATH="/home/go"
         echo "GOPATH值为: `colorEcho $BLUE $GOPATH`"
         echo "export GOPATH=$GOPATH" >> /etc/profile
         echo 'export PATH=$PATH:$GOPATH/bin' >> /etc/profile
